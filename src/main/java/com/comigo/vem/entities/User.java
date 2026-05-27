@@ -27,16 +27,21 @@ public class User {
 	@JoinColumn(name = "driver_id")
 	private DriverData driverData;
 	
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+	
 	public User() {
 	}
 
-	public User(Long id, String cpf, String name, String email, String birthDate, String phone) {
+	public User(Long id, String cpf, String name, String email, String birthDate, String phone, Address address) {
 		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
 		this.email = email;
 		this.birthDate = birthDate;
 		this.phone = phone;
+		this.address = address;
 	}
 
 	public Long getId() {
