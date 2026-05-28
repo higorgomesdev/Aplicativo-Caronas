@@ -61,8 +61,8 @@ public class Address {
 		return street;
 	}
 
-	public void setStreet(String road) {
-		this.street = road;
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
 	public String getNumber() {
