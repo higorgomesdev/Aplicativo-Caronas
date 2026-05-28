@@ -25,6 +25,7 @@ public class User {
 	private String email;
 	private String birthDate;
 	private String phone;
+	private String password;
 	
 	@OneToOne
 	@JoinColumn(name = "driver_id")
@@ -43,13 +44,14 @@ public class User {
 	public User() {
 	}
 
-	public User(Long id, String cpf, String name, String email, String birthDate, String phone, Address address) {
+	public User(Long id, String cpf, String name, String email, String birthDate, String phone,String password, Address address) {
 		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
 		this.email = email;
 		this.birthDate = birthDate;
 		this.phone = phone;
+		this.password = password;
 		this.address = address;
 	}
 
@@ -100,6 +102,22 @@ public class User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	public DriverData getDriverData() {
 		return driverData;
@@ -125,5 +143,6 @@ public class User {
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
+	
 	
 }
