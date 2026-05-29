@@ -6,6 +6,8 @@ import java.util.Objects;
 import com.comigo.vem.entities.enums.StatusBooking;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,6 +23,7 @@ public class Booking {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Instant instantBooking;
+	@Enumerated(EnumType.STRING)
 	private StatusBooking status;
 
 	
