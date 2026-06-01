@@ -30,21 +30,21 @@ INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678
 
 -- 3. Inserir Utilizadores (tb_user)
 -- A Ana (ID 1) e o Bruno (ID 2) têm driver_id preenchido.
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Ana Silva', 'ana@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 1, 1);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('22222222222', 'Bruno Costa', 'bruno@email.com', '1985-05-15', '922222222', 'senha123', 'https://picsum.photos/id/1011/600/400', 2, 2);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Ana Silva', 'ana@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 1, 1);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('22222222222', 'Bruno Costa', 'bruno@email.com', '1985-05-15', '922222222', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 2, 2);
 
 -- O Carlos (ID 3), a Diana (ID 4) e o Eduardo (ID 5) são apenas passageiros (driver_id é NULL)
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('33333333333', 'Carlos Dias', 'carlos@email.com', '1992-08-20', '933333333', 'senha123', 'https://picsum.photos/id/1011/600/400', NULL, 3);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('44444444444', 'Diana Faria', 'diana@email.com', '1998-12-10', '944444444', 'senha123', 'https://picsum.photos/id/1011/600/400', NULL, 4);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('55555555555', 'Eduardo Gomes', 'eduardo@email.com', '2000-03-30', '955555555', 'senha123', 'https://picsum.photos/id/1011/600/400', NULL, 5);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('33333333333', 'Carlos Dias', 'carlos@email.com', '1992-08-20', '933333333', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', NULL, 3);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('44444444444', 'Diana Faria', 'diana@email.com', '1998-12-10', '944444444', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', NULL, 4);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('55555555555', 'Eduardo Gomes', 'eduardo@email.com', '2000-03-30', '955555555', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', NULL, 5);
 
 --inseridos depois para mais testes
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Higor Gomes', 'higor@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 3, 6);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Jennifer Yasmin', 'jennifer@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 4, 7);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Hiagor Silva', 'hiagor@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 5, 8);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Breno Gomes', 'breno@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 6, 9);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'jacirleide Josefa', 'jacirleide@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 7, 10);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Josimar Silva', 'josimar@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400',8, 11);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Higor Gomes', 'higor@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 3, 6);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Jennifer Yasmin', 'jennifer@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 4, 7);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Hiagor Silva', 'hiagor@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 5, 8);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Breno Gomes', 'breno@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 6, 9);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'jacirleide Josefa', 'jacirleide@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 7, 10);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Josimar Silva', 'josimar@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400',8, 11);
 
 
 -- 4. Associar Utilizadores às Roles na tabela intermédia (tb_user_role)
