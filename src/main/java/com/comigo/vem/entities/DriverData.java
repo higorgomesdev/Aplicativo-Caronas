@@ -2,7 +2,11 @@ package com.comigo.vem.entities;
 
 import java.util.Objects;
 
+import com.comigo.vem.entities.enums.ColorVehicle;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,15 +22,18 @@ public class DriverData {
 	private String cnh;
 	private String vehicleModel;
 	private String licensePlate	;
+	@Enumerated(EnumType.STRING)
+	private ColorVehicle color;
 	
 	public DriverData() {
 	}
 
-	public DriverData(Long id, String cnh, String vehicleModel, String licensePlate) {
+	public DriverData(Long id, String cnh, String vehicleModel, String licensePlate, ColorVehicle color) {
 		this.id = id;
 		this.cnh = cnh;
 		this.vehicleModel = vehicleModel;
 		this.licensePlate = licensePlate;
+		this.color = color;
 	}
 
 	public Long getId() {
@@ -59,6 +66,14 @@ public class DriverData {
 
 	public void setLicensePlate(String licensePlate) {
 		this.licensePlate = licensePlate;
+	}
+
+	public ColorVehicle getColor() {
+		return color;
+	}
+
+	public void setColor(ColorVehicle color) {
+		this.color = color;
 	}
 
 	@Override

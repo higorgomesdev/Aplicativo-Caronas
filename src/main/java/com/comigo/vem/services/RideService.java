@@ -32,6 +32,10 @@ public class RideService {
 		
 		return rides.map(RideDTO::new);
 	}
-		
+	
+	@Transactional(readOnly = true)
+	public RideDTO findById(Long id) {
+		return new RideDTO(repository.findById(id).get());
 	}
+}
 

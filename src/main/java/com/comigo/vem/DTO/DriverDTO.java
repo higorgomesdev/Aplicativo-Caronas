@@ -8,6 +8,8 @@ public class DriverDTO {
 	private String name;
 	private String photoUrl;
 	
+	private DriverDataDTO driverData;
+	
 	public DriverDTO() {
 	}
 
@@ -21,6 +23,7 @@ public class DriverDTO {
 		id = entity.getId();
 		name = entity.getName();
 		photoUrl = entity.getPhotoUrl();
+		driverData = new DriverDataDTO(entity.getDriverData());
 	}
 
 	public Long getId() {
