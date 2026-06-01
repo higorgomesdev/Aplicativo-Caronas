@@ -35,6 +35,7 @@ public class User implements UserDetails{
 	private String birthDate;
 	private String phone;
 	private String password;
+	private String photoUrl;
 	
 	@OneToOne
 	@JoinColumn(name = "driver_id")
@@ -59,7 +60,7 @@ public class User implements UserDetails{
 	public User() {
 	}
 
-	public User(Long id, String cpf, String name, String email, String birthDate, String phone,String password, Address address) {
+	public User(Long id, String cpf, String name, String email, String birthDate, String phone,String password, String photoUrl, Address address) {
 		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
@@ -67,6 +68,7 @@ public class User implements UserDetails{
 		this.birthDate = birthDate;
 		this.phone = phone;
 		this.password = password;
+		this.photoUrl = photoUrl;
 		this.address = address;
 	}
 
@@ -126,6 +128,14 @@ public class User implements UserDetails{
 		this.password = password;
 	}
 	
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
+
 	public Address getAddress() {
 		return address;
 	}

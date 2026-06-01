@@ -3,26 +3,49 @@ INSERT INTO tb_role (authority) VALUES ('ROLE_USER');
 INSERT INTO tb_role (authority) VALUES ('ROLE_DRIVER');
 
 -- Inserir Endereços (tb_address)
-INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('São Paulo', 'Pinheiros', 'Rua Teodoro Sampaio', '1020', 'Apto 45');
 INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('Rio de Janeiro', 'Copacabana', 'Avenida Atlântica', '1500', 'Bloco B, Sala 201');
 INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('São Paulo', 'Ferraz de vasconcelos', 'Rua joão de deus morais', '298', 'casa 2');
 INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('Paulistana', 'sertanejo', 'travessa rio grande do sul', '380', 'esquina');
 INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('Paulistana', 'sertanejo', 'areolino de abreu', '68', 'esquina');
 
+INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('Curitiba', 'Centro', 'Rua XV de Novembro', '550', 'Sala 12');
+INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('Belo Horizonte', 'Savassi', 'Rua Pernambuco', '1200', 'Loja 5');
+INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('Salvador', 'Barra', 'Avenida Oceânica', '300', 'Apto 101');
+INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('Porto Alegre', 'Moinhos de Vento', 'Rua Padre Chagas', '420', 'Cobertura');
+INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('Fortaleza', 'Meireles', 'Avenida Beira Mar', '2500', 'Bloco A, Apto 802');
+INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('Vitória', 'Praia do Canto', 'Rua Aleixo Neto', '95', 'Casa');
+INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('Curitiba', 'Centro', 'Rua XV de Novembro', '550', 'Sala 12');
 
 -- 2. Inserir Dados de Motorista (tb_driver_data)
 INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'Renault fluence', 'OCH3B83');
 INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('10987654321', 'BYD dolphi', 'OBJ4V97');
 
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'Gol', 'OOI3B89');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'Punto', 'AQR3B86');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'Prisma', 'GBH3B23');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'Fiat', 'MLK3B81');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'ferrary', 'VXZ3B85');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'fusca', 'TER3B84');
+
+
 -- 3. Inserir Utilizadores (tb_user)
 -- A Ana (ID 1) e o Bruno (ID 2) têm driver_id preenchido.
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, driver_id, address_id) VALUES ('11111111111', 'Ana Silva', 'ana@email.com', '1990-01-01', '911111111', 'senha123', 1, 1);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, driver_id, address_id) VALUES ('22222222222', 'Bruno Costa', 'bruno@email.com', '1985-05-15', '922222222', 'senha123', 2, 2);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Ana Silva', 'ana@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 1, 1);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('22222222222', 'Bruno Costa', 'bruno@email.com', '1985-05-15', '922222222', 'senha123', 'https://picsum.photos/id/1011/600/400', 2, 2);
 
 -- O Carlos (ID 3), a Diana (ID 4) e o Eduardo (ID 5) são apenas passageiros (driver_id é NULL)
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, driver_id, address_id) VALUES ('33333333333', 'Carlos Dias', 'carlos@email.com', '1992-08-20', '933333333', 'senha123', NULL, 3);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, driver_id, address_id) VALUES ('44444444444', 'Diana Faria', 'diana@email.com', '1998-12-10', '944444444', 'senha123', NULL, 4);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, driver_id, address_id) VALUES ('55555555555', 'Eduardo Gomes', 'eduardo@email.com', '2000-03-30', '955555555', 'senha123', NULL, 5);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('33333333333', 'Carlos Dias', 'carlos@email.com', '1992-08-20', '933333333', 'senha123', 'https://picsum.photos/id/1011/600/400', NULL, 3);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('44444444444', 'Diana Faria', 'diana@email.com', '1998-12-10', '944444444', 'senha123', 'https://picsum.photos/id/1011/600/400', NULL, 4);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('55555555555', 'Eduardo Gomes', 'eduardo@email.com', '2000-03-30', '955555555', 'senha123', 'https://picsum.photos/id/1011/600/400', NULL, 5);
+
+--inseridos depois para mais testes
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Higor Gomes', 'higor@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 3, 6);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Jennifer Yasmin', 'jennifer@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 4, 7);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Hiagor Silva', 'hiagor@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 5, 8);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Breno Gomes', 'breno@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 6, 9);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'jacirleide Josefa', 'jacirleide@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400', 7, 10);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Josimar Silva', 'josimar@email.com', '1990-01-01', '911111111', 'senha123', 'https://picsum.photos/id/1011/600/400',8, 11);
+
 
 -- 4. Associar Utilizadores às Roles na tabela intermédia (tb_user_role)
 -- Ana (ID 1) e Bruno (ID 2) recebem as roles USER (1) e DRIVER (2)
@@ -48,6 +71,35 @@ INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, startin
 INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_Point, destination_state, destination_city, destination_neighborhood, destination_street, destination_Point) VALUES ('2026-06-03T17:00:00Z', 3, 32.0, 'FULL', 2, 'RJ', 'Rio de Janeiro', 'Leblon', 'Rua O', 'Ponto 15', 'RJ', 'Teresópolis', 'Bairro 6', 'Rua P', 'Ponto 16');
 INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_Point, destination_state, destination_city, destination_neighborhood, destination_street, destination_Point) VALUES ('2026-06-04T08:00:00Z', 3, 20.0, 'AVAILABLE', 2, 'RJ', 'Rio de Janeiro', 'Barra', 'Rua Q', 'Ponto 17', 'RJ', 'Angra', 'Bairro 7', 'Rua R', 'Ponto 18');
 INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_Point, destination_state, destination_city, destination_neighborhood, destination_street, destination_Point) VALUES ('2026-06-05T09:00:00Z', 3, 25.0, 'AVAILABLE', 2, 'RJ', 'Rio de Janeiro', 'Botafogo', 'Rua S', 'Ponto 19', 'RJ', 'Búzios', 'Bairro 8', 'Rua T', 'Ponto 20');
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_point, destination_state, destination_city, destination_neighborhood, destination_street, destination_point) VALUES ('2026-06-04T07:30:00Z', 4, 80.0, 'AVAILABLE', 1, 'SP', 'São Paulo', 'Moema', 'Rua Azul', 'Terminal 1', 'RJ', 'Rio de Janeiro', 'Copacabana', 'Av Atlântica', 'Rodoviária');
+
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_point, destination_state, destination_city, destination_neighborhood, destination_street, destination_point) VALUES ('2026-06-05T06:00:00Z', 3, 120.0, 'AVAILABLE', 2, 'MG', 'Belo Horizonte', 'Savassi', 'Rua Minas', 'Shopping BH', 'SP', 'Campinas', 'Taquaral', 'Rua Verde', 'Terminal Central');
+
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_point, destination_state, destination_city, destination_neighborhood, destination_street, destination_point) VALUES ('2026-06-06T14:00:00Z', 4, 95.0, 'AVAILABLE', 1, 'PR', 'Curitiba', 'Centro', 'Rua XV', 'Praça Central', 'SC', 'Florianópolis', 'Trindade', 'Rua das Flores', 'UFSC');
+
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_point, destination_state, destination_city, destination_neighborhood, destination_street, destination_point) VALUES ('2026-06-07T18:00:00Z', 2, 150.0, 'AVAILABLE', 2, 'BA', 'Salvador', 'Barra', 'Av Oceânica', 'Farol da Barra', 'PE', 'Recife', 'Boa Viagem', 'Av Boa Viagem', 'Shopping Recife');
+
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_point, destination_state, destination_city, destination_neighborhood, destination_street, destination_point) VALUES ('2026-06-08T05:30:00Z', 4, 200.0, 'AVAILABLE', 1, 'GO', 'Goiânia', 'Setor Bueno', 'Rua 10', 'Praça Bueno', 'DF', 'Brasília', 'Asa Sul', 'SQS 308', 'Rodoviária Plano Piloto');
+
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_point, destination_state, destination_city, destination_neighborhood, destination_street, destination_point) VALUES ('2026-06-09T11:00:00Z', 4, 180.0, 'AVAILABLE', 2, 'RS', 'Porto Alegre', 'Moinhos de Vento', 'Rua Padre Chagas', 'Parque Moinhos', 'SC', 'Joinville', 'América', 'Rua Blumenau', 'Terminal Norte');
+
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_point, destination_state, destination_city, destination_neighborhood, destination_street, destination_point) VALUES ('2026-06-10T09:30:00Z', 3, 220.0, 'AVAILABLE', 1, 'CE', 'Fortaleza', 'Meireles', 'Av Beira Mar', 'Beira Mar', 'RN', 'Natal', 'Ponta Negra', 'Rua Praia', 'Shopping Natal');
+
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_point, destination_state, destination_city, destination_neighborhood, destination_street, destination_point) VALUES ('2026-06-11T13:00:00Z', 4, 160.0, 'AVAILABLE', 2, 'ES', 'Vitória', 'Praia do Canto', 'Rua Alegria', 'Shopping Vitória', 'RJ', 'Campos dos Goytacazes', 'Centro', 'Rua Santos Dumont', 'Rodoviária');
+
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_point, destination_state, destination_city, destination_neighborhood, destination_street, destination_point) VALUES ('2026-06-12T20:00:00Z', 4, 300.0, 'AVAILABLE', 1, 'SP', 'São Paulo', 'Vila Mariana', 'Rua Domingos', 'Metrô Ana Rosa', 'PR', 'Londrina', 'Centro', 'Rua Paraná', 'Terminal Londrina');
+
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_point, destination_state, destination_city, destination_neighborhood, destination_street, destination_point) VALUES ('2026-06-13T15:00:00Z', 3, 140.0, 'AVAILABLE', 2, 'MT', 'Cuiabá', 'Centro Norte', 'Rua das Palmeiras', 'Mercado Central', 'GO', 'Anápolis', 'Jundiaí', 'Rua Goiás', 'Terminal Sul');
+
+--ADICIONADOS DEPOIS PARA MAIS TESTES
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_Point, destination_state, destination_city, destination_neighborhood, destination_street, destination_Point) VALUES ('2026-06-01T08:00:00Z', 4, 20.5, 'AVAILABLE', 6, 'SP', 'São Paulo', 'Pinheiros', 'Rua A', 'Ponto 1', 'SP', 'Santos', 'Centro', 'Rua B', 'Ponto 2');
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_Point, destination_state, destination_city, destination_neighborhood, destination_street, destination_Point) VALUES ('2026-06-01T08:00:00Z', 4, 20.5, 'AVAILABLE', 7, 'SP', 'São Paulo', 'Pinheiros', 'Rua A', 'Ponto 1', 'SP', 'Santos', 'Centro', 'Rua B', 'Ponto 2');
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_Point, destination_state, destination_city, destination_neighborhood, destination_street, destination_Point) VALUES ('2026-06-01T08:00:00Z', 4, 20.5, 'AVAILABLE', 8, 'SP', 'São Paulo', 'Pinheiros', 'Rua A', 'Ponto 1', 'SP', 'Santos', 'Centro', 'Rua B', 'Ponto 2');
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_Point, destination_state, destination_city, destination_neighborhood, destination_street, destination_Point) VALUES ('2026-06-01T08:00:00Z', 4, 20.5, 'AVAILABLE', 9, 'SP', 'São Paulo', 'Pinheiros', 'Rua A', 'Ponto 1', 'SP', 'Santos', 'Centro', 'Rua B', 'Ponto 2');
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_Point, destination_state, destination_city, destination_neighborhood, destination_street, destination_Point) VALUES ('2026-06-01T08:00:00Z', 4, 20.5, 'AVAILABLE', 10, 'SP', 'São Paulo', 'Pinheiros', 'Rua A', 'Ponto 1', 'SP', 'Santos', 'Centro', 'Rua B', 'Ponto 2');
+INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, starting_state, starting_city, starting_neighborhood, starting_street, starting_Point, destination_state, destination_city, destination_neighborhood, destination_street, destination_Point) VALUES ('2026-06-01T08:00:00Z', 4, 20.5, 'AVAILABLE', 11, 'SP', 'São Paulo', 'Pinheiros', 'Rua A', 'Ponto 1', 'SP', 'Santos', 'Centro', 'Rua B', 'Ponto 2');
+
+
 
 INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-05-28T10:00:00Z', 'ACCEPTED', 1, 3);
 INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-05-01T11:00:00Z', 'PENDING', 1, 4);
