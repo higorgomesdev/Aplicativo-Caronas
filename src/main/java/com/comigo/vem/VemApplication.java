@@ -7,19 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class VemApplication implements CommandLineRunner{
+public class VemApplication{
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(VemApplication.class, args);
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-		System.out.println("encode = " + passwordEncoder.encode(""));
-		
 	}
 
 }

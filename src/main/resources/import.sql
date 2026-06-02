@@ -39,12 +39,12 @@ INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, d
 INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('55555555555', 'Eduardo Gomes', 'eduardo@email.com', '2000-03-30', '955555555', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', NULL, 5);
 
 --inseridos depois para mais testes
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Higor Gomes', 'higor@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 3, 6);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Jennifer Yasmin', 'jennifer@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 4, 7);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Hiagor Silva', 'hiagor@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 5, 8);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Breno Gomes', 'breno@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 6, 9);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'jacirleide Josefa', 'jacirleide@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 7, 10);
-INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Josimar Silva', 'josimar@email.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400',8, 11);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Higor Gomes', 'higor@gmail.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 3, 6);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Jennifer Yasmin', 'jennifer@gmail.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 4, 7);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Hiagor Silva', 'hiagor@gmail.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 5, 8);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Breno Gomes', 'breno@gmail.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 6, 9);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'jacirleide Josefa', 'jacirleide@gmail.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400', 7, 10);
+INSERT INTO tb_user (cpf, name, email, birth_date, phone, password, photo_url, driver_id, address_id) VALUES ('11111111111', 'Josimar Silva', 'josimar@gmail.com', '1990-01-01', '911111111', '$2a$10$I22XFwxtI9zDckzkmPgZ.ufRRicP31Q.7tAiRiodGvnwU2/bloUvS', 'https://picsum.photos/id/1011/600/400',8, 11);
 
 
 -- 4. Associar Utilizadores às Roles na tabela intermédia (tb_user_role)
@@ -57,6 +57,19 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (4, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (5, 1);
+--inseridos depois
+INSERT INTO tb_user_role (user_id, role_id) VALUES (6, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (6, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (7, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (7, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (8, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (8, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (9, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (9, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (10, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (10, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (11, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (11, 2);
 
 -- 5. Inserir 10 Viagens (tb_ride) corrigido
 -- Nota: Ajuste os valores de "state", "neighborhood" e "meetingPoint" conforme necessário.
