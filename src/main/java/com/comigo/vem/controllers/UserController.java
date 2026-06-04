@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.comigo.vem.DTO.UpdatePasswordDTO;
 import com.comigo.vem.DTO.UserCreatedDTO;
 import com.comigo.vem.DTO.UserPutDTO;
 import com.comigo.vem.DTO.UserResponseDTO;
@@ -46,6 +47,13 @@ public class UserController {
 	@PutMapping
 	public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UserPutDTO dto){
 		return ResponseEntity.ok(service.updateUser(dto));
+	}
+	
+	@PutMapping(value = "/newPassword")
+	public ResponseEntity<Void> newPassword(@RequestBody UpdatePasswordDTO dto){
+		service.updatePassword(dto);
+		return ResponseEntity.noContent().build();
+		
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.comigo.vem.services;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +13,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.comigo.vem.DTO.UpdatePasswordDTO;
 import com.comigo.vem.DTO.UserCreatedDTO;
 import com.comigo.vem.DTO.UserPutDTO;
 import com.comigo.vem.DTO.UserResponseDTO;
@@ -93,6 +96,37 @@ public class UserService implements UserDetailsService{
 		
 		return new UserResponseDTO(repository.save(user));
 	}
+	
+	public void updatePassword (UpdatePasswordDTO dto) {
+		User user = authenticated();
+		try {
+		if(passwordEncoder.matches(dto.getCurrentPassword(), user.getPassword())) {
+			String newPassword = passwordEncoder.encode(dto.getNewPassword());
+			user.setPassword(newPassword);
+			repository.save(user);
+		} else {
+			throw new IOException("Senha incorreta");		
+			}
+		}
+		catch(IOException e) {
+			e.getMessage();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//Copia os dados do dto que recebe para uma entidade
