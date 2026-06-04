@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.comigo.vem.DTO.UserResponseWithLoginDTO;
+import com.comigo.vem.DTO.UserResponseDTO;
 import com.comigo.vem.entities.Address;
 import com.comigo.vem.entities.Role;
 import com.comigo.vem.entities.User;
@@ -60,7 +60,7 @@ public class UserService implements UserDetailsService{
 	}
 	
 	@Transactional
-	public UserResponseWithLoginDTO createdUser(UserResponseWithLoginDTO dto) {
+	public UserResponseDTO createdUser(UserResponseDTO dto) {
 		
 		User user = new User();
 		userCopy(dto, user);
@@ -70,11 +70,24 @@ public class UserService implements UserDetailsService{
 		//----------------
 		user = repository.save(user);
 
-		return new UserResponseWithLoginDTO(user);		
+		return new UserResponseDTO(user);		
 	}
 	
+	@Transactional
+	public UserResponseDTO getMe () {
+		return new UserResponseDTO(authenticated());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//Copia os dados do dto que recebe para uma entidade
-	private User userCopy(UserResponseWithLoginDTO dto, User entity) {
+	private User userCopy(UserResponseDTO dto, User entity) {
 		
 		entity.setName(dto.getName());
 		entity.setEmail(dto.getEmail());
