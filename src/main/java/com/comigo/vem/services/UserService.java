@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.comigo.vem.DTO.UserResponseDTO;
+import com.comigo.vem.DTO.UserResponseMinDTO;
 import com.comigo.vem.entities.Address;
 import com.comigo.vem.entities.Role;
 import com.comigo.vem.entities.User;
@@ -78,12 +79,12 @@ public class UserService implements UserDetailsService{
 		return new UserResponseDTO(authenticated());
 	}
 	
-	
-	
-	
-	
-	
-	
+	@Transactional
+	public UserResponseMinDTO getMeMin () {
+		String email = authenticated().getEmail();
+		return new UserResponseMinDTO(repository.searcheMeMin(email).get());
+	}
+
 	
 	
 	//Copia os dados do dto que recebe para uma entidade

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.comigo.vem.DTO.UserResponseDTO;
+import com.comigo.vem.DTO.UserResponseMinDTO;
 import com.comigo.vem.services.UserService;
 
 @RestController
@@ -33,4 +34,10 @@ public class UserController {
 	public ResponseEntity<UserResponseDTO> getMe(){
 		return ResponseEntity.ok(service.getMe());
 	}
+	
+	@GetMapping(value = "/me/min")
+	public ResponseEntity<UserResponseMinDTO> getMeMin(){
+		return ResponseEntity.ok(service.getMeMin());
+	}
+	
 }
