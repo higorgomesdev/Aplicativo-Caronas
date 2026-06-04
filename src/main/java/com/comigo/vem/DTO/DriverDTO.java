@@ -49,4 +49,14 @@ public class DriverDTO {
 	public void setPhotoUrl(String photoUrl) {
 		this.photoUrl = photoUrl;
 	}
+
+	public DriverDataDTO getDriverData() {
+		return driverData;
+	}
+
+	public void setDriverData(DriverDataDTO driverData) {
+		this.driverData = driverData;
+	}
+	
+	
 }
