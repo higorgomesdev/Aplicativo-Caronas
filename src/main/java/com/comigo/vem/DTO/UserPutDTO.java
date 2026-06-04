@@ -6,47 +6,35 @@ import java.util.List;
 import com.comigo.vem.entities.Role;
 import com.comigo.vem.entities.User;
 
-public class UserResponseDTO {
+public class UserPutDTO {
 	
 	private Long id;
-	private String cpf;
 	private String name;
-	private String email;
-	private String birthDate;
 	private String phone;
 	private String photoUrl;
 	
 	private AddressDTO address;
-	
-	private List<RoleDTO> roles = new ArrayList<>();
-	
-	public UserResponseDTO() {
-	}
 
-	public UserResponseDTO(Long id, String cpf, String name, String email, String birthDate, String phone, String photoUrl, AddressDTO address, List<RoleDTO> roles) {
+	
+	public UserPutDTO() {
+	}
+	
+	public UserPutDTO(Long id, String name, String phone, String photoUrl, AddressDTO address) {
+		super();
 		this.id = id;
-		this.cpf = cpf;
 		this.name = name;
-		this.email = email;
-		this.birthDate = birthDate;
 		this.phone = phone;
 		this.photoUrl = photoUrl;
 		this.address = address;
-		this.roles = roles;
 	}
-	
-	public UserResponseDTO(User entity) {
+
+	public UserPutDTO(User entity) {
 		id = entity.getId();
-		cpf = entity.getCpf();
 		name = entity.getName();
-		email = entity.getEmail();
-		birthDate = entity.getBirthDate();
 		phone = entity.getPhone();
 		photoUrl = entity.getPhotoUrl();
 		address = new AddressDTO(entity.getAddress());
-		for(Role r : entity.getRoles()) {
-			roles.add(new RoleDTO(r));
-		}	
+		
 	}
 
 	public Long getId() {
@@ -57,36 +45,12 @@ public class UserResponseDTO {
 		this.id = id;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
 	}
 
 	public String getPhone() {
@@ -96,7 +60,7 @@ public class UserResponseDTO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-    
+
 	public String getPhotoUrl() {
 		return photoUrl;
 	}
@@ -113,7 +77,4 @@ public class UserResponseDTO {
 		this.address = address;
 	}
 
-	public List<RoleDTO> getRoles() {
-		return roles;
-	}
 }

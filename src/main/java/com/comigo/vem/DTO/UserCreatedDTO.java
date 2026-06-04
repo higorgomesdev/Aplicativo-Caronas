@@ -6,7 +6,7 @@ import java.util.List;
 import com.comigo.vem.entities.Role;
 import com.comigo.vem.entities.User;
 
-public class UserResponseDTO {
+public class UserCreatedDTO {
 	
 	private Long id;
 	private String cpf;
@@ -14,28 +14,31 @@ public class UserResponseDTO {
 	private String email;
 	private String birthDate;
 	private String phone;
+	private String password;
 	private String photoUrl;
 	
 	private AddressDTO address;
 	
 	private List<RoleDTO> roles = new ArrayList<>();
 	
-	public UserResponseDTO() {
+	public UserCreatedDTO() {
 	}
 
-	public UserResponseDTO(Long id, String cpf, String name, String email, String birthDate, String phone, String photoUrl, AddressDTO address, List<RoleDTO> roles) {
+	public UserCreatedDTO(Long id, String cpf, String name, String email, String birthDate, String phone,
+			String password, String photoUrl, AddressDTO address, List<RoleDTO> roles) {
 		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
 		this.email = email;
 		this.birthDate = birthDate;
 		this.phone = phone;
+		this.password = password;
 		this.photoUrl = photoUrl;
 		this.address = address;
 		this.roles = roles;
 	}
 	
-	public UserResponseDTO(User entity) {
+	public UserCreatedDTO(User entity) {
 		id = entity.getId();
 		cpf = entity.getCpf();
 		name = entity.getName();
@@ -96,7 +99,15 @@ public class UserResponseDTO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-    
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getPhotoUrl() {
 		return photoUrl;
 	}

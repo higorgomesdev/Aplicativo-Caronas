@@ -11,6 +11,8 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.comigo.vem.DTO.UserCreatedDTO;
+import com.comigo.vem.DTO.UserPutDTO;
 import com.comigo.vem.DTO.UserResponseDTO;
 import com.comigo.vem.DTO.UserResponseMinDTO;
 import com.comigo.vem.entities.Address;
@@ -61,7 +63,7 @@ public class UserService implements UserDetailsService{
 	}
 	
 	@Transactional
-	public UserResponseDTO createdUser(UserResponseDTO dto) {
+	public UserResponseDTO createdUser(UserCreatedDTO dto) {
 		
 		User user = new User();
 		userCopy(dto, user);
@@ -74,21 +76,27 @@ public class UserService implements UserDetailsService{
 		return new UserResponseDTO(user);		
 	}
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public UserResponseDTO getMe () {
 		return new UserResponseDTO(authenticated());
 	}
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public UserResponseMinDTO getMeMin () {
 		String email = authenticated().getEmail();
 		return new UserResponseMinDTO(repository.searcheMeMin(email).get());
 	}
-
+	
+	@Transactional
+	public UserResponseDTO updateUser(UserPutDTO dto) {
+		User user = userCopyPut(dto, authenticated());
+		
+		return new UserResponseDTO(repository.save(user));
+	}
 	
 	
 	//Copia os dados do dto que recebe para uma entidade
-	private User userCopy(UserResponseDTO dto, User entity) {
+	private User userCopy(UserCreatedDTO dto, User entity) {
 		
 		entity.setName(dto.getName());
 		entity.setEmail(dto.getEmail());
@@ -97,6 +105,25 @@ public class UserService implements UserDetailsService{
 		entity.setPhone(dto.getPhone());
 		entity.setPassword(passwordEncoder.encode(dto.getPassword()));
 		entity.setPhotoUrl(dto.getPhotoUrl());
+		//----------------------------------------------------
+		Address address = new Address();
+		address.setStreet(dto.getAddress().getStreet());
+		address.setNumber(dto.getAddress().getNumber());
+		address.setComplement(dto.getAddress().getComplement());
+		address.setNeighborhood(dto.getAddress().getNeighborhood());
+		address.setCity(dto.getAddress().getCity());
+		
+		
+		entity.setAddress(address);
+		
+		return entity;
+	}
+	
+		private static User userCopyPut(UserPutDTO dto, User entity) {
+		
+		entity.setName(dto.getName());
+		entity.setPhone(dto.getPhone());
+		
 		//----------------------------------------------------
 		Address address = new Address();
 		address.setStreet(dto.getAddress().getStreet());

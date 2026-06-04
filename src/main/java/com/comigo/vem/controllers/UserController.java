@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.comigo.vem.DTO.UserCreatedDTO;
+import com.comigo.vem.DTO.UserPutDTO;
 import com.comigo.vem.DTO.UserResponseDTO;
 import com.comigo.vem.DTO.UserResponseMinDTO;
 import com.comigo.vem.services.UserService;
@@ -23,11 +26,11 @@ public class UserController {
 	private UserService service;
 	
 	@PostMapping
-	public ResponseEntity<UserResponseDTO> newUser(@RequestBody UserResponseDTO dto){
-		UserResponseDTO createdUser = service.createdUser(dto);
+	public ResponseEntity<UserResponseDTO> newUser(@RequestBody UserCreatedDTO dto){
+		UserResponseDTO responseUser = service.createdUser(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		
-		return ResponseEntity.created(uri).body(createdUser);
+		return ResponseEntity.created(uri).body(responseUser);
 	}
 	
 	@GetMapping(value = "/me")
@@ -38,6 +41,11 @@ public class UserController {
 	@GetMapping(value = "/me/min")
 	public ResponseEntity<UserResponseMinDTO> getMeMin(){
 		return ResponseEntity.ok(service.getMeMin());
+	}
+	
+	@PutMapping
+	public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UserPutDTO dto){
+		return ResponseEntity.ok(service.updateUser(dto));
 	}
 	
 }
