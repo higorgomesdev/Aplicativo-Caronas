@@ -18,12 +18,14 @@ public class UserResponseDTO {
 	
 	private AddressDTO address;
 	
+	private DriverDataDTO dataDriver;
+	
 	private List<RoleDTO> roles = new ArrayList<>();
 	
 	public UserResponseDTO() {
 	}
 
-	public UserResponseDTO(Long id, String cpf, String name, String email, String birthDate, String phone, String photoUrl, AddressDTO address, List<RoleDTO> roles) {
+	public UserResponseDTO(Long id, String cpf, String name, String email, String birthDate, String phone, String photoUrl, AddressDTO address, DriverDataDTO dataDriver, List<RoleDTO> roles) {
 		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
@@ -33,6 +35,7 @@ public class UserResponseDTO {
 		this.photoUrl = photoUrl;
 		this.address = address;
 		this.roles = roles;
+		this.dataDriver = dataDriver;
 	}
 	
 	public UserResponseDTO(User entity) {
@@ -44,6 +47,9 @@ public class UserResponseDTO {
 		phone = entity.getPhone();
 		photoUrl = entity.getPhotoUrl();
 		address = new AddressDTO(entity.getAddress());
+		if(entity.getDriverData() != null) {
+			dataDriver = new DriverDataDTO(entity.getDriverData());	
+		}
 		for(Role r : entity.getRoles()) {
 			roles.add(new RoleDTO(r));
 		}	
@@ -111,6 +117,14 @@ public class UserResponseDTO {
 
 	public void setAddress(AddressDTO address) {
 		this.address = address;
+	}
+
+	public DriverDataDTO getDataDriver() {
+		return dataDriver;
+	}
+
+	public void setDataDriver(DriverDataDTO dataDriver) {
+		this.dataDriver = dataDriver;
 	}
 
 	public List<RoleDTO> getRoles() {

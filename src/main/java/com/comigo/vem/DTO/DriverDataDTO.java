@@ -6,6 +6,7 @@ import com.comigo.vem.entities.enums.ColorVehicle;
 public class DriverDataDTO {
 	
 	private Long id;
+	private String cnh;
 	private String vehicleModel;
 	private String licensePlate	;
 	private ColorVehicle color;
@@ -15,6 +16,7 @@ public class DriverDataDTO {
 	
 	public DriverDataDTO(DriverData entity) {
 		id = entity.getId();
+		cnh = entity.getCnh();
 		vehicleModel = entity.getVehicleModel();
 		licensePlate = entity.getLicensePlate();
 		color = entity.getColor();
@@ -33,6 +35,14 @@ public class DriverDataDTO {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getCnh() {
+		return cnh;
+	}
+
+	public void setCnh(String cnh) {
+		this.cnh = cnh;
 	}
 
 	public String getVehicleModel() {
