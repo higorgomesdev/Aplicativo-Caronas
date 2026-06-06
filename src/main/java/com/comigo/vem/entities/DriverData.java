@@ -24,16 +24,18 @@ public class DriverData {
 	private String licensePlate	;
 	@Enumerated(EnumType.STRING)
 	private ColorVehicle color;
+	private String vehicleYear;
 	
 	public DriverData() {
 	}
 
-	public DriverData(Long id, String cnh, String vehicleModel, String licensePlate, ColorVehicle color) {
+	public DriverData(Long id, String cnh, String vehicleModel, String licensePlate, ColorVehicle color,  String vehicleYear) {
 		this.id = id;
 		this.cnh = cnh;
 		this.vehicleModel = vehicleModel;
 		this.licensePlate = licensePlate;
 		this.color = color;
+		this.vehicleYear = vehicleYear;
 	}
 
 	public Long getId() {
@@ -74,6 +76,14 @@ public class DriverData {
 
 	public void setColor(ColorVehicle color) {
 		this.color = color;
+	}
+	
+	public String getVehicleYear() {
+		return vehicleYear;
+	}
+
+	public void setVehicleYear(String vehicleYear) {
+		this.vehicleYear = vehicleYear;
 	}
 
 	@Override

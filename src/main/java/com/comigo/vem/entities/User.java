@@ -38,7 +38,7 @@ public class User implements UserDetails{
 	private String password;
 	private String photoUrl;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "driver_id")
 	private DriverData driverData;
 	

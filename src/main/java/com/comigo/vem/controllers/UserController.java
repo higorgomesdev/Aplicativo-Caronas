@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.comigo.vem.DTO.DriverDataDTO;
 import com.comigo.vem.DTO.UpdatePasswordDTO;
 import com.comigo.vem.DTO.UserCreatedDTO;
 import com.comigo.vem.DTO.UserPutDTO;
+import com.comigo.vem.DTO.UserResponseCreatedDriverDTO;
 import com.comigo.vem.DTO.UserResponseDTO;
 import com.comigo.vem.DTO.UserResponseMinDTO;
 import com.comigo.vem.services.UserService;
@@ -54,6 +56,11 @@ public class UserController {
 		service.updatePassword(dto);
 		return ResponseEntity.noContent().build();
 		
+	}
+	
+	@PutMapping(value = "/newDriver")
+	public ResponseEntity<UserResponseCreatedDriverDTO> createdDriver(@RequestBody DriverDataDTO dto){
+		return ResponseEntity.ok().body(service.createdDriver(dto));
 	}
 	
 }

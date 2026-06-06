@@ -10,6 +10,7 @@ public class DriverDataDTO {
 	private String vehicleModel;
 	private String licensePlate	;
 	private ColorVehicle color;
+	private String vehicleYear;
 	
 	public DriverDataDTO() {
 	}
@@ -20,13 +21,16 @@ public class DriverDataDTO {
 		vehicleModel = entity.getVehicleModel();
 		licensePlate = entity.getLicensePlate();
 		color = entity.getColor();
+		vehicleYear = entity.getVehicleYear();
+		
 	}
 	
-	public DriverDataDTO(Long id, String vehicleModel, String licensePlate, ColorVehicle color) {
+	public DriverDataDTO(Long id, String vehicleModel, String licensePlate, ColorVehicle color, String vehicleYear) {
 		this.id = id;
 		this.vehicleModel = vehicleModel;
 		this.licensePlate = licensePlate;
 		this.color = color;
+		this.vehicleYear= vehicleYear; ;
 	}
 
 	public Long getId() {
@@ -67,6 +71,14 @@ public class DriverDataDTO {
 
 	public void setColor(ColorVehicle color) {
 		this.color = color;
+	}
+
+	public String getVehicleYear() {
+		return vehicleYear;
+	}
+
+	public void setVehicleYear(String vehicleYear) {
+		this.vehicleYear = vehicleYear;
 	}
 	
 }

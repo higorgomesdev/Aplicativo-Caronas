@@ -13,12 +13,15 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.comigo.vem.DTO.DriverDataDTO;
 import com.comigo.vem.DTO.UpdatePasswordDTO;
 import com.comigo.vem.DTO.UserCreatedDTO;
 import com.comigo.vem.DTO.UserPutDTO;
+import com.comigo.vem.DTO.UserResponseCreatedDriverDTO;
 import com.comigo.vem.DTO.UserResponseDTO;
 import com.comigo.vem.DTO.UserResponseMinDTO;
 import com.comigo.vem.entities.Address;
+import com.comigo.vem.entities.DriverData;
 import com.comigo.vem.entities.Role;
 import com.comigo.vem.entities.User;
 import com.comigo.vem.repositories.RoleRepository;
@@ -97,6 +100,7 @@ public class UserService implements UserDetailsService{
 		return new UserResponseDTO(repository.save(user));
 	}
 	
+	@Transactional
 	public void updatePassword (UpdatePasswordDTO dto) {
 		User user = authenticated();
 		try {
@@ -113,7 +117,23 @@ public class UserService implements UserDetailsService{
 		}
 	}
 	
+	@Transactional
+	public UserResponseCreatedDriverDTO createdDriver(DriverDataDTO dto) {
 	
+		User user = authenticated();
+		Role role = roleRepository.searchRoleDriver();
+		
+		if(user.hasRole(role)) {
+			return null; // futuro tratamento de exceção
+		} 
+		user.addRole(role);
+		
+		DriverData driverData = toDriverData(dto);
+		
+		user.setDriverData(driverData);
+
+		return new UserResponseCreatedDriverDTO(repository.save(user));
+	}
 	
 	
 	
@@ -171,5 +191,16 @@ public class UserService implements UserDetailsService{
 		
 		return entity;
 	}
+		
+		private DriverData toDriverData(DriverDataDTO dto) {
+		    DriverData driverData = new DriverData();
+		    driverData.setCnh(dto.getCnh());
+		    driverData.setVehicleModel(dto.getVehicleModel());
+		    driverData.setLicensePlate(dto.getLicensePlate());
+		    driverData.setColor(dto.getColor());
+		    driverData.setVehicleYear(dto.getVehicleYear());
+
+		    return driverData;
+		}
 }
 

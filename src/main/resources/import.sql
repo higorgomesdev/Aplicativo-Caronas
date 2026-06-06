@@ -17,15 +17,15 @@ INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES (
 INSERT INTO tb_address (city, neighborhood, street, number, complement) VALUES ('Curitiba', 'Centro', 'Rua XV de Novembro', '550', 'Sala 12');
 
 -- 2. Inserir Dados de Motorista (tb_driver_data)
-INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'Renault fluence', 'OCH3B83');
-INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('10987654321', 'BYD dolphi', 'OBJ4V97');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate, color, vehicle_year) VALUES ('12345678901', 'Renault fluence', 'OCH3B83', 'PRETO', '2026');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate, color, vehicle_year) VALUES ('10987654321', 'BYD dolphi', 'OBJ4V97', 'BRANCO', '2026');
 
-INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'Gol', 'OOI3B89');
-INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'Punto', 'AQR3B86');
-INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'Prisma', 'GBH3B23');
-INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'Fiat', 'MLK3B81');
-INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'ferrary', 'VXZ3B85');
-INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate) VALUES ('12345678901', 'fusca', 'TER3B84');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate, color, vehicle_year) VALUES ('12345678901', 'Gol', 'OOI3B89', 'PRATA', '2026');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate, color, vehicle_year) VALUES ('12345678901', 'Punto', 'AQR3B86', 'BEGE', '2026');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate, color, vehicle_year) VALUES ('12345678901', 'Prisma', 'GBH3B23', 'VERMELHO', '2026');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate, color, vehicle_year) VALUES ('12345678901', 'Fiat', 'MLK3B81', 'AMARELO', '2026');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate, color, vehicle_year) VALUES ('12345678901', 'ferrary', 'VXZ3B85', 'MARROM', '2026');
+INSERT INTO tb_driver_data (cnh, vehicle_Model, license_Plate, color, vehicle_year) VALUES ('12345678901', 'fusca', 'TER3B84', 'CINZA', '2026');
 
 
 -- 3. Inserir Utilizadores (tb_user)
