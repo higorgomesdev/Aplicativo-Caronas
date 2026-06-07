@@ -114,13 +114,13 @@ INSERT INTO tb_ride (departure_time, capacity, price, status, driver_id, startin
 
 
 
-INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-05-28T10:00:00Z', 'ACCEPTED', 1, 3);
-INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-05-01T11:00:00Z', 'PENDING', 1, 4);
-INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-04-27T12:00:00Z', 'ACCEPTED', 2, 5);
-INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-04-15T13:00:00Z', 'PENDING', 3, 3);
-INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-04-08T14:00:00Z', 'ACCEPTED', 6, 4);
-INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-03-28T15:00:00Z', 'ACCEPTED', 7, 5);
-INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-03-24T16:00:00Z', 'REJECTED', 8, 3);
-INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-03-20T17:00:00Z', 'PENDING', 9, 4);
-INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-02-15T18:00:00Z', 'ACCEPTED', 10, 5);
-INSERT INTO tb_booking (instant_booking, status, ride_id, passenger_id) VALUES ('2026-02-01T19:00:00Z', 'PENDING', 5, 3);
+INSERT INTO tb_booking (instant_booking, status, seats, ride_id, passenger_id) VALUES ('2026-05-28T10:00:00Z', 'ACCEPTED', 1, 1, 3);
+INSERT INTO tb_booking (instant_booking, status, seats, ride_id, passenger_id) VALUES ('2026-05-01T11:00:00Z', 'PENDING', 1, 1, 4);
+INSERT INTO tb_booking (instant_booking, status, seats, ride_id, passenger_id) VALUES ('2026-04-27T12:00:00Z', 'ACCEPTED', 1, 2, 5);
+INSERT INTO tb_booking (instant_booking, status, seats, ride_id, passenger_id) VALUES ('2026-04-15T13:00:00Z', 'PENDING', 1, 3, 3);
+INSERT INTO tb_booking (instant_booking, status, seats, ride_id, passenger_id) VALUES ('2026-04-08T14:00:00Z', 'ACCEPTED', 1, 6, 4);
+INSERT INTO tb_booking (instant_booking, status, seats, ride_id, passenger_id) VALUES ('2026-03-28T15:00:00Z', 'ACCEPTED', 1, 7, 5);
+INSERT INTO tb_booking (instant_booking, status, seats, ride_id, passenger_id) VALUES ('2026-03-24T16:00:00Z', 'REJECTED', 1, 8, 3);
+INSERT INTO tb_booking (instant_booking, status, seats, ride_id, passenger_id) VALUES ('2026-03-20T17:00:00Z', 'PENDING', 1, 9, 4);
+INSERT INTO tb_booking (instant_booking, status, seats, ride_id, passenger_id) VALUES ('2026-02-15T18:00:00Z', 'ACCEPTED', 1, 10, 5);
+INSERT INTO tb_booking (instant_booking, status, seats, ride_id, passenger_id) VALUES ('2026-02-01T19:00:00Z', 'PENDING', 1, 5, 3);

@@ -1,5 +1,6 @@
 package com.comigo.vem.DTO;
 
+import com.comigo.vem.entities.User;
 import com.comigo.vem.projections.UserProjection;
 
 public class UserResponseMinDTO {
@@ -21,6 +22,12 @@ public class UserResponseMinDTO {
 		id = projection.getId();
 		name = projection.getName();
 		photoUrl = projection.getPhotoUrl();
+	}
+	
+	public UserResponseMinDTO(User entity) {
+		id = entity.getId();
+		name = entity.getName();
+		photoUrl = entity.getPhotoUrl();
 	}
 
 	public Long getId() {
