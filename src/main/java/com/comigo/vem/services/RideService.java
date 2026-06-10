@@ -52,44 +52,7 @@ public class RideService {
 		return new RideDTO(repository.findById(id).get());
 	}
 	
-	@Transactional
-	public BookingDTO reservedSeats(Long rideId, Integer seats) {
-		Ride ride = repository.findById(rideId).get(); // futuro tratamento de exceção
-		User user = userService.authenticated();
-		
 
-		///validando se o motorista não esta solicitando reserva na sua propria viagem
-		if(user.getId().equals(ride.getDriver().getId())) {
-			//tratamento de exceção 
-		}
-		
-
-		/// validando se usuario ja não possui reserva na viagem
-		boolean hasReservation = ride.getBookings().stream().anyMatch(p-> p.getUser().getId().equals(user.getId()));
-		if(hasReservation) {
-		
-		}
-
-		
-		///pegando o numero de vagas ocupadas usando as reservas registradas na viagem
-		Integer occupiedSeats = ride.getBookings().stream().filter(p-> p.getStatus() == StatusBooking.ACCEPTED).mapToInt(Booking::getSeats).sum();
-		
-		///validando se a vagas disponiveis para efetuar a reserva
-		if((ride.getCapacity() - occupiedSeats) < seats) {
-		}
-		
-		Booking booking = new Booking();
-		booking.setInstantBooking(Instant.now());
-		booking.setRide(ride);
-		booking.setSeats(seats);
-		booking.setStatus(StatusBooking.PENDING);
-		booking.setUser(user);
-		
-		booking = bookingRepository.save(booking);
-		
-		
-		return new BookingDTO(booking);
-	}
 	
 	@Transactional
 	public RideDTO createdRide(RideDTO dto) {
@@ -109,7 +72,7 @@ public class RideService {
 		ride.setStartingLocation(starting);
 		ride.setDestinationLocation(destination);
 		ride.setDriver(user);
-		ride.setPrice(dto.getPrice());
+		ride.setPrice(dto.getPrice());	
 		ride.setStatus(StatusRide.AVAILABLE);
 		
 		return new RideDTO(repository.save(ride));

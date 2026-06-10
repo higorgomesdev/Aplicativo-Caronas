@@ -46,15 +46,7 @@ public class RideController {
 		return ResponseEntity.ok(service.findById(id));
 	}
 	
-	@PostMapping(value = "/{rideId}/seats")
-	public ResponseEntity<BookingDTO> reservedSeats(@PathVariable(name = "rideId") Long rideId,@RequestParam Integer seats){
-	BookingDTO dto = service.reservedSeats(rideId, seats); 
 	
-	URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
-	
-	
-	return ResponseEntity.created(uri).body(dto);
-	}
 
 	@PostMapping
 	public ResponseEntity<RideDTO> createdRide(@RequestBody RideDTO dto) {
