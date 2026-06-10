@@ -3,7 +3,10 @@ package com.comigo.vem.controllers;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +32,11 @@ public class BookingController {
 	
 	
 	return ResponseEntity.created(uri).body(dto);
+	}
+	
+	@GetMapping(value = "/{rideId}")
+	public ResponseEntity<Page<BookingDTO>> findByBookings(@PathVariable(name = "rideId")  Long rideId, Pageable pageable){
+		return ResponseEntity.ok(service.findBookings(rideId, pageable));
 	}
 
 }

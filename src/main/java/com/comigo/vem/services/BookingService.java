@@ -3,6 +3,8 @@ package com.comigo.vem.services;
 import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,4 +66,24 @@ public class BookingService {
 		
 		return new BookingDTO(booking);
 	}
+	
+	@Transactional(readOnly = true)
+	public Page<BookingDTO> findBookings(Long rideID, Pageable pageable) {
+		Page<Booking> bookings = repository.searchBookingsByRide(rideID, pageable);
+		return bookings.map(p-> new BookingDTO(p));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
