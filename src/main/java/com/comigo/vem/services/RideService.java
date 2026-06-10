@@ -11,11 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.comigo.vem.DTO.BookingDTO;
+import com.comigo.vem.DTO.LocationDTO;
 import com.comigo.vem.DTO.RideDTO;
 import com.comigo.vem.entities.Booking;
+import com.comigo.vem.entities.Location;
 import com.comigo.vem.entities.Ride;
 import com.comigo.vem.entities.User;
 import com.comigo.vem.entities.enums.StatusBooking;
+import com.comigo.vem.entities.enums.StatusRide;
 import com.comigo.vem.repositories.BookingRespository;
 import com.comigo.vem.repositories.RideRepository;
 
@@ -88,12 +91,34 @@ public class RideService {
 		return new BookingDTO(booking);
 	}
 	
-	
-	
-	
-	
-	
-	
+	@Transactional
+	public RideDTO createdRide(RideDTO dto) {
+		User user = userService.authenticated();
+		if(user.getRoles().stream().noneMatch(p-> p.getAuthority().equals("ROLE_DRIVER"))) {
+			// tratamento de exceção
+		}
+		
+		Ride ride = new Ride();
+		ride.setCapacity(dto.getCapacity());
+		ride.setDepartureTime(dto.getDepartureTime());
+		
+		Location starting = toLocation(dto.getStarting());
+				
+		Location destination = toLocation(dto.getDestination());
+
+		ride.setStartingLocation(starting);
+		ride.setDestinationLocation(destination);
+		ride.setDriver(user);
+		ride.setPrice(dto.getPrice());
+		ride.setStatus(StatusRide.AVAILABLE);
+		
+		return new RideDTO(repository.save(ride));
+	}
+
+	private Location toLocation(LocationDTO dto) {
+		return new Location(dto.getState(), dto.getCity(), dto.getNeighborhood(),
+				dto.getStreet(), dto.getMeetingPoint());
+	}
 	
 	
 	
