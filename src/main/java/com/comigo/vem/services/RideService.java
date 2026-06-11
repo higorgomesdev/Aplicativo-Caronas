@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.comigo.vem.DTO.LocationDTO;
 import com.comigo.vem.DTO.RideDTO;
-import com.comigo.vem.DTO.RideMeDTO;
+import com.comigo.vem.DTO.RideMeDriverDTO;
 import com.comigo.vem.entities.Location;
 import com.comigo.vem.entities.Ride;
 import com.comigo.vem.entities.User;
@@ -81,12 +81,12 @@ public class RideService {
 		return new RideDTO(repository.save(ride));
 	}
 	
-	public Page<RideMeDTO> meRides(Pageable pageable){
+	public Page<RideMeDriverDTO> meRides(Pageable pageable){
 		User user = userService.authenticated();
 		Page<Ride> rides = repository.searchMeRidesDriver(user.getId(), pageable);
 		return rides.map(p-> {
 				Long totalPendingRequests = p.getBookings().stream().filter(x-> x.getStatus() == StatusBooking.PENDING).count();
-				RideMeDTO dto = new RideMeDTO(p);
+				RideMeDriverDTO dto = new RideMeDriverDTO(p);
 				dto.setTotalPendingRequests(totalPendingRequests);
 				return dto;
 			});

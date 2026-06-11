@@ -5,7 +5,7 @@ import java.time.Instant;
 import com.comigo.vem.entities.Ride;
 import com.comigo.vem.entities.enums.StatusRide;
 
-public class RideMeDTO {
+public class RideMeDriverDTO {
 
 	private Long id;
 	private Instant departureTime;
@@ -20,12 +20,12 @@ public class RideMeDTO {
 	
 	private LocationDTO destination;
 	
-	public RideMeDTO() {
+	public RideMeDriverDTO() {
 	}
 
 	
 	
-	public RideMeDTO(Long id, Instant departureTime, Integer capacity, Double price, StatusRide status,
+	public RideMeDriverDTO(Long id, Instant departureTime, Integer capacity, Double price, StatusRide status,
 			Long totalPendingRequests, DriverDTO driver, LocationDTO starting, LocationDTO destination) {
 		this.id = id;
 		this.departureTime = departureTime;
@@ -40,7 +40,7 @@ public class RideMeDTO {
 
 
 
-	public RideMeDTO(Ride entity) {
+	public RideMeDriverDTO(Ride entity) {
 		id = entity.getId();
 		departureTime = entity.getDepartureTime();
 		capacity = entity.getCapacity();

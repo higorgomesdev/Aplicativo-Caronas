@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.comigo.vem.DTO.RideMeDTO;
+import com.comigo.vem.DTO.RideMeDriverDTO;
 import com.comigo.vem.entities.Ride;
 
 @Repository
@@ -33,5 +33,32 @@ public interface RideRepository extends JpaRepository<Ride, Long>{
 			+ "WHERE obj.driver.id = :userId "
 			+ "ORDER BY obj.departureTime")
 	public Page<Ride> searchMeRidesDriver(@Param("userId") Long userId, Pageable pageable);
+	
+	
+	
+	
+	
+	
+	
+	/*SELECT
+    TB_RIDE.STARTING_STATE,
+    TB_RIDE.STARTING_CITY,
+    TB_RIDE.DESTINATION_STATE,
+    TB_RIDE.DESTINATION_CITY,
+    TB_RIDE.DEPARTURE_TIME,
+    TB_RIDE.STATUS,
+    TB_RIDE.PRICE,
+    TB_USER.ID,
+    TB_USER.NAME
+FROM TB_RIDE
+INNER JOIN TB_BOOKING
+    ON TB_BOOKING.RIDE_ID = TB_RIDE.ID
+INNER JOIN TB_USER
+    ON TB_RIDE.DRIVER_ID = TB_USER.ID
+WHERE TB_BOOKING.PASSENGER_ID = 3*/
 
+
+	@EntityGraph(attributePaths = {"bookings", "driver", "driver.driverData"})
+	@Query("SELECT com.comigo.vem.DTO.")
+	public Page<Ride> searchMeRidesPassenger(@Param("userId") Long userId, Pageable pageable);
 }
