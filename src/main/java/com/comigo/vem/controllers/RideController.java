@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.comigo.vem.DTO.BookingDTO;
 import com.comigo.vem.DTO.RideDTO;
+import com.comigo.vem.DTO.RideMeDTO;
 import com.comigo.vem.services.RideService;
 
 @RestController
@@ -53,6 +54,11 @@ public class RideController {
 		dto = service.createdRide(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
+	}
+	
+	@GetMapping(value = "/me/rides/driver")
+	public ResponseEntity<Page<RideMeDTO>> meRides(Pageable pageable){
+		return ResponseEntity.ok(service.meRides(pageable));
 	}
 
 

@@ -10,10 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.comigo.vem.DTO.BookingDTO;
 import com.comigo.vem.DTO.LocationDTO;
 import com.comigo.vem.DTO.RideDTO;
-import com.comigo.vem.entities.Booking;
+import com.comigo.vem.DTO.RideMeDTO;
 import com.comigo.vem.entities.Location;
 import com.comigo.vem.entities.Ride;
 import com.comigo.vem.entities.User;
@@ -21,6 +20,7 @@ import com.comigo.vem.entities.enums.StatusBooking;
 import com.comigo.vem.entities.enums.StatusRide;
 import com.comigo.vem.repositories.BookingRespository;
 import com.comigo.vem.repositories.RideRepository;
+import com.comigo.vem.repositories.RoleRepository;
 
 @Service
 public class RideService {
@@ -33,6 +33,9 @@ public class RideService {
 	
 	@Autowired
 	private BookingRespository bookingRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	@Transactional(readOnly = true)
 	public Page<RideDTO> findByRote(String cityOrigin, String stateOrigin, String cityDestination, 
@@ -76,6 +79,17 @@ public class RideService {
 		ride.setStatus(StatusRide.AVAILABLE);
 		
 		return new RideDTO(repository.save(ride));
+	}
+	
+	public Page<RideMeDTO> meRides(Pageable pageable){
+		User user = userService.authenticated();
+		Page<Ride> rides = repository.searchMeRidesDriver(user.getId(), pageable);
+		return rides.map(p-> {
+				Long totalPendingRequests = p.getBookings().stream().filter(x-> x.getStatus() == StatusBooking.PENDING).count();
+				RideMeDTO dto = new RideMeDTO(p);
+				dto.setTotalPendingRequests(totalPendingRequests);
+				return dto;
+			});
 	}
 
 	private Location toLocation(LocationDTO dto) {

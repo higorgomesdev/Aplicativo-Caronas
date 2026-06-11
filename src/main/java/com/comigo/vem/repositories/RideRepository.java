@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.comigo.vem.DTO.RideMeDTO;
 import com.comigo.vem.entities.Ride;
 
 @Repository
@@ -25,4 +26,12 @@ public interface RideRepository extends JpaRepository<Ride, Long>{
 		    + "AND obj.departureTime >= :startOfDay AND obj.departureTime < :endOfDay")
 	public Page<Ride> findByRote(@Param("cityOrigin") String cityOrigin, @Param("stateOrigin") String stateOrigin, @Param("cityDestination") String cityDestination, 
 			@Param("stateDestination") String stateDestination, @Param("startOfDay") Instant startOfDay, @Param("endOfDay") Instant endOfDay, Pageable pageable);
+	
+	@EntityGraph(attributePaths = {"bookings", "driver", "driver.driverData"})
+	@Query("SELECT DISTINCT obj "
+			+ "FROM Ride obj "
+			+ "WHERE obj.driver.id = :userId "
+			+ "ORDER BY obj.departureTime")
+	public Page<Ride> searchMeRidesDriver(@Param("userId") Long userId, Pageable pageable);
+
 }

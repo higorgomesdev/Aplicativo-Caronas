@@ -5,13 +5,14 @@ import java.time.Instant;
 import com.comigo.vem.entities.Ride;
 import com.comigo.vem.entities.enums.StatusRide;
 
-public class RideDTO {
+public class RideMeDTO {
 
-	private Long id; 
-	private Instant departureTime; 
-	private Integer capacity; 
-	private Double price; 
-	private StatusRide status; 
+	private Long id;
+	private Instant departureTime;
+	private Integer capacity;
+	private Double price;
+	private StatusRide status;
+	private Long totalPendingRequests;
 	
 	private DriverDTO driver;
 	
@@ -19,22 +20,27 @@ public class RideDTO {
 	
 	private LocationDTO destination;
 	
-	public RideDTO() {
+	public RideMeDTO() {
 	}
 
-	public RideDTO(Long id, Instant departureTime, Integer capacity, Double price, StatusRide status, DriverDTO driver,
-			LocationDTO starting, LocationDTO destination) {
+	
+	
+	public RideMeDTO(Long id, Instant departureTime, Integer capacity, Double price, StatusRide status,
+			Long totalPendingRequests, DriverDTO driver, LocationDTO starting, LocationDTO destination) {
 		this.id = id;
 		this.departureTime = departureTime;
 		this.capacity = capacity;
 		this.price = price;
 		this.status = status;
+		this.totalPendingRequests = totalPendingRequests;
 		this.driver = driver;
 		this.starting = starting;
 		this.destination = destination;
 	}
-	
-	public RideDTO(Ride entity) {
+
+
+
+	public RideMeDTO(Ride entity) {
 		id = entity.getId();
 		departureTime = entity.getDepartureTime();
 		capacity = entity.getCapacity();
@@ -84,6 +90,16 @@ public class RideDTO {
 	public void setStatus(StatusRide status) {
 		this.status = status;
 	}
+	
+	public Long getTotalPendingRequests() {
+		return totalPendingRequests;
+	}
+
+	public void setTotalPendingRequests(Long totalPendingRequests) {
+		this.totalPendingRequests = totalPendingRequests;
+	}
+
+
 
 	public DriverDTO getDriver() {
 		return driver;
