@@ -18,6 +18,7 @@ public interface BookingRespository extends JpaRepository<Booking, Long>{
 		    SELECT obj
 		    FROM Booking obj
 		    WHERE obj.ride.id = :rideId
+		    AND obj.ride.driver.id = :userId
 		    ORDER BY
 		        CASE
 		            WHEN obj.status = com.comigo.vem.entities.enums.StatusBooking.PENDING THEN 1
@@ -26,5 +27,5 @@ public interface BookingRespository extends JpaRepository<Booking, Long>{
 		        END,
 		        obj.instantBooking DESC
 		""")
-		Page<Booking> searchBookingsByRide(@Param("rideId") Long rideId, Pageable pageable);
+		Page<Booking> searchBookingsByRide(@Param("rideId") Long rideId, @Param("userId") Long userId, Pageable pageable);
 }

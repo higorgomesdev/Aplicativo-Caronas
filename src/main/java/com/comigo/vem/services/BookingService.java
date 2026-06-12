@@ -69,9 +69,11 @@ public class BookingService {
 	
 	@Transactional(readOnly = true)
 	public Page<BookingDTO> findBookings(Long rideID, Pageable pageable) {
-		Page<Booking> bookings = repository.searchBookingsByRide(rideID, pageable);
+		User user = userService.authenticated();
+		Page<Booking> bookings = repository.searchBookingsByRide(rideID, user.getId(), pageable);
 		return bookings.map(p-> new BookingDTO(p));
 	}
+
 	
 	
 	
