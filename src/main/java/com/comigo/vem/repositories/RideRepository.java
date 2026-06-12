@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.comigo.vem.DTO.RideMeDriverDTO;
 import com.comigo.vem.entities.Ride;
 
 @Repository
@@ -57,8 +56,11 @@ INNER JOIN TB_USER
     ON TB_RIDE.DRIVER_ID = TB_USER.ID
 WHERE TB_BOOKING.PASSENGER_ID = 3*/
 
-
-	@EntityGraph(attributePaths = {"bookings", "driver", "driver.driverData"})
-	@Query("SELECT com.comigo.vem.DTO.")
+	@EntityGraph(attributePaths = "driver")
+	@Query("SELECT obj "
+			+ "FROM Ride obj "
+			+ "JOIN obj.bookings b "
+			+ "WHERE b.user.id = :userId "
+			+ "ORDER BY obj.departureTime")
 	public Page<Ride> searchMeRidesPassenger(@Param("userId") Long userId, Pageable pageable);
 }

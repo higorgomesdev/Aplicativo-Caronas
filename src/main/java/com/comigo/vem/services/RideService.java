@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.comigo.vem.DTO.LocationDTO;
 import com.comigo.vem.DTO.RideDTO;
 import com.comigo.vem.DTO.RideMeDriverDTO;
+import com.comigo.vem.DTO.RideMePassengerDTO;
 import com.comigo.vem.entities.Location;
 import com.comigo.vem.entities.Ride;
 import com.comigo.vem.entities.User;
@@ -81,7 +82,8 @@ public class RideService {
 		return new RideDTO(repository.save(ride));
 	}
 	
-	public Page<RideMeDriverDTO> meRides(Pageable pageable){
+	@Transactional(readOnly = true)
+	public Page<RideMeDriverDTO> meRidesDriver(Pageable pageable){
 		User user = userService.authenticated();
 		Page<Ride> rides = repository.searchMeRidesDriver(user.getId(), pageable);
 		return rides.map(p-> {
@@ -91,6 +93,18 @@ public class RideService {
 				return dto;
 			});
 	}
+	
+	@Transactional(readOnly = true)
+	public Page<RideMePassengerDTO> meRidesPassenger(Pageable pageable){
+		User user = userService.authenticated();
+		Page<Ride> rides = repository.searchMeRidesPassenger(user.getId(), pageable);
+		return rides.map(p-> new RideMePassengerDTO(p));
+
+	}
+	
+	
+	
+	
 
 	private Location toLocation(LocationDTO dto) {
 		return new Location(dto.getState(), dto.getCity(), dto.getNeighborhood(),

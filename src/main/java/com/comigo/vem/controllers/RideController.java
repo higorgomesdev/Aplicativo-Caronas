@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.comigo.vem.DTO.BookingDTO;
 import com.comigo.vem.DTO.RideDTO;
 import com.comigo.vem.DTO.RideMeDriverDTO;
+import com.comigo.vem.DTO.RideMePassengerDTO;
 import com.comigo.vem.services.RideService;
 
 @RestController
@@ -57,10 +57,14 @@ public class RideController {
 	}
 	
 	@GetMapping(value = "/me/rides/driver")
-	public ResponseEntity<Page<RideMeDriverDTO>> meRides(Pageable pageable){
-		return ResponseEntity.ok(service.meRides(pageable));
+	public ResponseEntity<Page<RideMeDriverDTO>> meRidesDriver(Pageable pageable){
+		return ResponseEntity.ok(service.meRidesDriver(pageable));
 	}
 
+	@GetMapping(value = "/me/rides/passenger")
+	public ResponseEntity<Page<RideMePassengerDTO>> meRidesPassenger(Pageable pageable){
+		return ResponseEntity.ok(service.meRidesPassenger(pageable));
+	}
 
 }
 
