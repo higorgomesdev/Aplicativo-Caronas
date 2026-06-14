@@ -17,6 +17,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.comigo.vem.DTO.BookingDTO;
 import com.comigo.vem.services.BookingService;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 @RestController
 @RequestMapping(value = "/bookings")
 public class BookingController {
@@ -25,7 +28,8 @@ public class BookingController {
 	private BookingService service;
 	
 	@PostMapping(value = "/{rideId}/seats")
-	public ResponseEntity<BookingDTO> reservedSeats(@PathVariable(name = "rideId") Long rideId,@RequestParam Integer seats){
+	public ResponseEntity<BookingDTO> reservedSeats(@PathVariable(name = "rideId") Long rideId,
+													@Positive(message = "Valor deve ser maior que zero") @RequestParam Integer seats){
 	BookingDTO dto = service.reservedSeats(rideId, seats); 
 	
 	URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
@@ -35,7 +39,7 @@ public class BookingController {
 	}
 	
 	@GetMapping(value = "/{rideId}")
-	public ResponseEntity<Page<BookingDTO>> findByBookings(@PathVariable(name = "rideId")  Long rideId, Pageable pageable){
+	public ResponseEntity<Page<BookingDTO>> findByBookings(@NotNull(message = "Valor obrigatorio") @PathVariable(name = "rideId")  Long rideId, Pageable pageable){
 		return ResponseEntity.ok(service.findBookings(rideId, pageable));
 	}
 

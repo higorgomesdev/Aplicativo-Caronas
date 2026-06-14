@@ -1,5 +1,6 @@
 package com.comigo.vem.entities;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -33,7 +34,7 @@ public class User implements UserDetails{
 	private String cpf;
 	private String name;
 	private String email;
-	private String birthDate;
+	private LocalDate birthDate;
 	private String phone;
 	private String password;
 	private String photoUrl;
@@ -61,7 +62,7 @@ public class User implements UserDetails{
 	public User() {
 	}
 
-	public User(Long id, String cpf, String name, String email, String birthDate, String phone,String password, String photoUrl, Address address) {
+	public User(Long id, String cpf, String name, String email, LocalDate birthDate, String phone,String password, String photoUrl, Address address) {
 		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
@@ -105,11 +106,11 @@ public class User implements UserDetails{
 		this.email = email;
 	}
 
-	public String getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

@@ -16,12 +16,17 @@ import com.comigo.vem.DTO.RideMeDriverDTO;
 import com.comigo.vem.DTO.RideMePassengerDTO;
 import com.comigo.vem.entities.Location;
 import com.comigo.vem.entities.Ride;
+import com.comigo.vem.entities.Role;
 import com.comigo.vem.entities.User;
 import com.comigo.vem.entities.enums.StatusBooking;
 import com.comigo.vem.entities.enums.StatusRide;
 import com.comigo.vem.repositories.BookingRespository;
 import com.comigo.vem.repositories.RideRepository;
 import com.comigo.vem.repositories.RoleRepository;
+import com.comigo.vem.services.exceptions.ResourceNotFoundException;
+import com.comigo.vem.services.exceptions.RideCanceledException;
+import com.comigo.vem.services.exceptions.RideFullException;
+import com.comigo.vem.services.exceptions.UserDriverException;
 
 @Service
 public class RideService {
@@ -47,13 +52,24 @@ public class RideService {
 		
 		Page<Ride> rides = repository.findByRote(cityOrigin.toUpperCase(), stateOrigin.toUpperCase(), cityDestination.toUpperCase(), 
 			stateDestination.toUpperCase(), startOfDay, endOfDay, pageable);
-		
+		if(rides.isEmpty()) {
+			throw new ResourceNotFoundException("Nenhuma viagem encontrada");
+		}
 		return rides.map(RideDTO::new);
 	}
 	
 	@Transactional(readOnly = true)
 	public RideDTO findById(Long id) {
-		return new RideDTO(repository.findById(id).get());
+		Ride ride = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Recurso não encontrado"));
+		if(ride.getStatus() == StatusRide.CANCELLED) {
+			throw new RideCanceledException("Carona Cancelada");
+		}
+		Integer bookingsAccepted = ride.getBookings().stream().filter(p-> p.getStatus() == StatusBooking.ACCEPTED).mapToInt(p-> p.getSeats()).sum();
+		if(bookingsAccepted >= ride.getCapacity()) {
+			throw new RideFullException("Carona lotada");
+		}
+		
+		return  new RideDTO(ride);
 	}
 	
 
@@ -61,10 +77,10 @@ public class RideService {
 	@Transactional
 	public RideDTO createdRide(RideDTO dto) {
 		User user = userService.authenticated();
-		if(user.getRoles().stream().noneMatch(p-> p.getAuthority().equals("ROLE_DRIVER"))) {
-			// tratamento de exceção
+		Role role = roleRepository.searchRoleDriver();
+		if(!user.hasRole(role)) {
+			throw new UserDriverException("usuario não tem permição para esta ação");
 		}
-		
 		Ride ride = new Ride();
 		ride.setCapacity(dto.getCapacity());
 		ride.setDepartureTime(dto.getDepartureTime());
@@ -98,6 +114,9 @@ public class RideService {
 	public Page<RideMePassengerDTO> meRidesPassenger(Pageable pageable){
 		User user = userService.authenticated();
 		Page<Ride> rides = repository.searchMeRidesPassenger(user.getId(), pageable);
+		if(rides.isEmpty()) {
+			throw new ResourceNotFoundException("Nenhuma viagem");
+		}
 		return rides.map(p-> new RideMePassengerDTO(p));
 
 	}

@@ -26,6 +26,8 @@ import com.comigo.vem.entities.Role;
 import com.comigo.vem.entities.User;
 import com.comigo.vem.repositories.RoleRepository;
 import com.comigo.vem.repositories.UserRepository;
+import com.comigo.vem.services.exceptions.PasswordException;
+import com.comigo.vem.services.exceptions.UserDriverException;
 
 @Service
 public class UserService implements UserDetailsService{
@@ -70,7 +72,6 @@ public class UserService implements UserDetailsService{
 	
 	@Transactional
 	public UserResponseDTO createdUser(UserCreatedDTO dto) {
-		
 		User user = new User();
 		userCopy(dto, user);
 		//--------criando role padrão
@@ -103,18 +104,14 @@ public class UserService implements UserDetailsService{
 	@Transactional
 	public void updatePassword (UpdatePasswordDTO dto) {
 		User user = authenticated();
-		try {
-		if(passwordEncoder.matches(dto.getCurrentPassword(), user.getPassword())) {
-			String newPassword = passwordEncoder.encode(dto.getNewPassword());
-			user.setPassword(newPassword);
-			repository.save(user);
-		} else {
-			throw new IOException("Senha incorreta");		
-			}
-		}
-		catch(IOException e) {
-			e.getMessage();
-		}
+	
+		if(!passwordEncoder.matches(dto.getCurrentPassword(), user.getPassword())) {
+			throw new PasswordException("Senha Atual Incorreta");
+		} 
+		String newPassword = passwordEncoder.encode(dto.getNewPassword());
+		user.setPassword(newPassword);
+		repository.save(user);
+		
 	}
 	
 	@Transactional
@@ -124,7 +121,7 @@ public class UserService implements UserDetailsService{
 		Role role = roleRepository.searchRoleDriver();
 		
 		if(user.hasRole(role)) {
-			return null; // futuro tratamento de exceção
+			throw new UserDriverException("Usuario já é motorista");
 		} 
 		user.addRole(role);
 		
@@ -134,20 +131,6 @@ public class UserService implements UserDetailsService{
 
 		return new UserResponseCreatedDriverDTO(repository.save(user));
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//Copia os dados do dto que recebe para uma entidade
 	private User userCopy(UserCreatedDTO dto, User entity) {

@@ -1,18 +1,20 @@
 package com.comigo.vem.DTO;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.comigo.vem.entities.Role;
 import com.comigo.vem.entities.User;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class UserPutDTO {
 	
 	private Long id;
+	@NotBlank(message = "campo obrigatorio")
 	private String name;
+	@NotBlank(message = "campo obrigatorio")
 	private String phone;
 	private String photoUrl;
 	
+	@NotNull(message = "Endereço obrigatorio")
 	private AddressDTO address;
 
 	

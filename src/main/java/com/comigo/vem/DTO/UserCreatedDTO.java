@@ -1,22 +1,45 @@
 package com.comigo.vem.DTO;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.comigo.vem.entities.Role;
 import com.comigo.vem.entities.User;
+import com.comigo.vem.validations.Adult;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 public class UserCreatedDTO {
 	
 	private Long id;
+	@Size(min = 11, max = 11, message = "CPF invalido")
+	@NotBlank(message = "Campo Obrigatorio")
 	private String cpf;
+	@NotBlank(message = "Campo Obrigatorio")
 	private String name;
+	@Email(message = "email Invalido")
 	private String email;
-	private String birthDate;
+	@PastOrPresent(message = "A data deve ser uma data passada")
+	@NotNull(message = "Campo Obrigatorio")
+	@Adult(minAge = 16)
+	private LocalDate birthDate;
+	@NotBlank(message = "Campo obrigatorio")
 	private String phone;
+	@NotBlank(message = "A senha é obrigatória")
+	@Size(min = 8, max = 50, message = "A senha deve ter entre 8 e 50 caracteres")
+	@Pattern(
+	    regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$",
+	    message = "A senha deve conter letra maiúscula, minúscula e número"
+	)
 	private String password;
 	private String photoUrl;
-	
+	@NotNull
 	private AddressDTO address;
 	
 	private List<RoleDTO> roles = new ArrayList<>();
@@ -24,7 +47,7 @@ public class UserCreatedDTO {
 	public UserCreatedDTO() {
 	}
 
-	public UserCreatedDTO(Long id, String cpf, String name, String email, String birthDate, String phone,
+	public UserCreatedDTO(Long id, String cpf, String name, String email, LocalDate birthDate, String phone,
 			String password, String photoUrl, AddressDTO address, List<RoleDTO> roles) {
 		this.id = id;
 		this.cpf = cpf;
@@ -84,11 +107,11 @@ public class UserCreatedDTO {
 		this.email = email;
 	}
 
-	public String getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

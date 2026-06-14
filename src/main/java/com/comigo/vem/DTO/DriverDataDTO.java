@@ -3,13 +3,24 @@ package com.comigo.vem.DTO;
 import com.comigo.vem.entities.DriverData;
 import com.comigo.vem.entities.enums.ColorVehicle;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class DriverDataDTO {
 	
 	private Long id;
+	@NotBlank(message = "campo obrigatorio")
+	@Size(min = 9, max = 9, message = "Campo invalido")
 	private String cnh;
+	@NotBlank(message = "campo obrigatorio")
 	private String vehicleModel;
-	private String licensePlate	;
+	@NotBlank(message = "campo obrigatorio")
+	@Size(min = 7, max = 7, message = "Campo invalido")
+	private String licensePlate;
+	@NotNull(message = "Campo obrigatorio")
 	private ColorVehicle color;
+	@NotBlank(message ="Campo obrigatorio")
 	private String vehicleYear;
 	
 	public DriverDataDTO() {

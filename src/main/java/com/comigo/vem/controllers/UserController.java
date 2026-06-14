@@ -21,6 +21,8 @@ import com.comigo.vem.DTO.UserResponseDTO;
 import com.comigo.vem.DTO.UserResponseMinDTO;
 import com.comigo.vem.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -29,7 +31,7 @@ public class UserController {
 	private UserService service;
 	
 	@PostMapping
-	public ResponseEntity<UserResponseDTO> newUser(@RequestBody UserCreatedDTO dto){
+	public ResponseEntity<UserResponseDTO> newUser(@Valid @RequestBody UserCreatedDTO dto){
 		UserResponseDTO responseUser = service.createdUser(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		
@@ -47,19 +49,19 @@ public class UserController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UserPutDTO dto){
+	public ResponseEntity<UserResponseDTO> updateUser(@Valid @RequestBody UserPutDTO dto){
 		return ResponseEntity.ok(service.updateUser(dto));
 	}
 	
 	@PutMapping(value = "/newPassword")
-	public ResponseEntity<Void> newPassword(@RequestBody UpdatePasswordDTO dto){
+	public ResponseEntity<Void> newPassword(@Valid @RequestBody UpdatePasswordDTO dto){
 		service.updatePassword(dto);
 		return ResponseEntity.noContent().build();
 		
 	}
 	
 	@PutMapping(value = "/newDriver")
-	public ResponseEntity<UserResponseCreatedDriverDTO> createdDriver(@RequestBody DriverDataDTO dto){
+	public ResponseEntity<UserResponseCreatedDriverDTO> createdDriver(@Valid @RequestBody DriverDataDTO dto){
 		return ResponseEntity.ok().body(service.createdDriver(dto));
 	}
 	

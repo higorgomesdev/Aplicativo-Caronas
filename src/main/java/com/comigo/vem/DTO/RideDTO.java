@@ -5,18 +5,32 @@ import java.time.Instant;
 import com.comigo.vem.entities.Ride;
 import com.comigo.vem.entities.enums.StatusRide;
 
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.Negative;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 public class RideDTO {
 
 	private Long id; 
+	@NotNull(message = "Campor obrigatorio")
+	@Future(message = "A viagem deve ser agendada para uma data futura")
 	private Instant departureTime; 
+	@NotNull(message = "Campor obrigatorio")
 	private Integer capacity; 
-	private Double price; 
+	@NotNull(message = "Campor obrigatorio")
+	@Positive(message = "Valor tem que ser maior que zero")
+	private Double price;
+
 	private StatusRide status; 
 	
+
 	private DriverDTO driver;
 	
+	@NotNull(message = "Campor obrigatorio")
 	private LocationDTO starting;
 	
+	@NotNull(message = "Campor obrigatorio")
 	private LocationDTO destination;
 	
 	public RideDTO() {

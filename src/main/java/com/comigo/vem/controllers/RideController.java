@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,9 @@ import com.comigo.vem.DTO.RideMeDriverDTO;
 import com.comigo.vem.DTO.RideMePassengerDTO;
 import com.comigo.vem.services.RideService;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Future;
+
 @RestController
 @RequestMapping(value = "/rides")
 public class RideController {
@@ -29,13 +33,14 @@ public class RideController {
 	@Autowired
 	private RideService service;
 	
+	@Validated
 	@GetMapping
 	public ResponseEntity<Page<RideDTO>> findByRote(
 			@RequestParam(name = "cityOrigin") String cityOrigin, 
 			@RequestParam(name = "stateOrigin") String stateOrigin, 
 			@RequestParam(name = "cityDestination") String cityDestination, 
 			@RequestParam(name = "stateDestination") String stateDestination,
-			@RequestParam(name = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, Pageable pageable){
+			@Valid @Future(message = "data deve ser futura") @RequestParam(name = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, Pageable pageable){
 		
 		Page<RideDTO> rides = service.findByRote(cityOrigin, stateOrigin, cityDestination, stateDestination, date, pageable);
 		
@@ -50,7 +55,7 @@ public class RideController {
 	
 
 	@PostMapping
-	public ResponseEntity<RideDTO> createdRide(@RequestBody RideDTO dto) {
+	public ResponseEntity<RideDTO> createdRide(@Valid @RequestBody RideDTO dto) {
 		dto = service.createdRide(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);

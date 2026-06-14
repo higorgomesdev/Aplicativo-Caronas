@@ -15,6 +15,8 @@ import com.comigo.vem.entities.User;
 import com.comigo.vem.entities.enums.StatusBooking;
 import com.comigo.vem.repositories.BookingRespository;
 import com.comigo.vem.repositories.RideRepository;
+import com.comigo.vem.services.exceptions.BookingException;
+import com.comigo.vem.services.exceptions.UserDriverException;
 
 @Service
 public class BookingService {
@@ -36,14 +38,14 @@ public class BookingService {
 
 		///validando se o motorista não esta solicitando reserva na sua propria viagem
 		if(user.getId().equals(ride.getDriver().getId())) {
-			//tratamento de exceção 
+			throw new UserDriverException("Sua propria carona"); 
 		}
 		
 
 		/// validando se usuario ja não possui reserva na viagem
 		boolean hasReservation = ride.getBookings().stream().anyMatch(p-> p.getUser().getId().equals(user.getId()));
 		if(hasReservation) {
-		
+			throw new BookingException("Ja possui reserva nesta carona");
 		}
 
 		
@@ -52,6 +54,7 @@ public class BookingService {
 		
 		///validando se a vagas disponiveis para efetuar a reserva
 		if((ride.getCapacity() - occupiedSeats) < seats) {
+			throw new BookingException("Vagas insuficientes");
 		}
 		
 		Booking booking = new Booking();

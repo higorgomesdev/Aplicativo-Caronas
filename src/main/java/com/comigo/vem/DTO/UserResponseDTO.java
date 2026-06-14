@@ -1,5 +1,6 @@
 package com.comigo.vem.DTO;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class UserResponseDTO {
 	private String cpf;
 	private String name;
 	private String email;
-	private String birthDate;
+	private LocalDate birthDate;
 	private String phone;
 	private String photoUrl;
 	
@@ -25,7 +26,7 @@ public class UserResponseDTO {
 	public UserResponseDTO() {
 	}
 
-	public UserResponseDTO(Long id, String cpf, String name, String email, String birthDate, String phone, String photoUrl, AddressDTO address, DriverDataDTO dataDriver, List<RoleDTO> roles) {
+	public UserResponseDTO(Long id, String cpf, String name, String email, LocalDate birthDate, String phone, String photoUrl, AddressDTO address, DriverDataDTO dataDriver, List<RoleDTO> roles) {
 		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
@@ -87,11 +88,11 @@ public class UserResponseDTO {
 		this.email = email;
 	}
 
-	public String getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 
