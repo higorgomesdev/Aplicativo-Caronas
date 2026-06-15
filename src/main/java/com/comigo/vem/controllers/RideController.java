@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ public class RideController {
 	@Autowired
 	private RideService service;
 	
+	@PreAuthorize("hasAnyRole('PASSENGER', 'DRIVER')")
 	@Validated
 	@GetMapping
 	public ResponseEntity<Page<RideDTO>> findByRote(
@@ -46,26 +48,26 @@ public class RideController {
 		
 		return ResponseEntity.ok(rides);
 	}
-	
+	@PreAuthorize("hasAnyRole('PASSENGER', 'DRIVER')")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<RideDTO> findById(@PathVariable(name = "id") Long id){
 		return ResponseEntity.ok(service.findById(id));
 	}
 	
 	
-
+	@PreAuthorize("hasAnyRole('DRIVER')")
 	@PostMapping
 	public ResponseEntity<RideDTO> createdRide(@Valid @RequestBody RideDTO dto) {
 		dto = service.createdRide(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
-	
+	@PreAuthorize("hasAnyRole('DRIVER')")
 	@GetMapping(value = "/me/rides/driver")
 	public ResponseEntity<Page<RideMeDriverDTO>> meRidesDriver(Pageable pageable){
 		return ResponseEntity.ok(service.meRidesDriver(pageable));
 	}
-
+	@PreAuthorize("hasAnyRole('PASSENGER', 'DRIVER')")
 	@GetMapping(value = "/me/rides/passenger")
 	public ResponseEntity<Page<RideMePassengerDTO>> meRidesPassenger(Pageable pageable){
 		return ResponseEntity.ok(service.meRidesPassenger(pageable));

@@ -1,5 +1,5 @@
 -- 1. Inserir Roles (Papéis de acesso)
-INSERT INTO tb_role (authority) VALUES ('ROLE_USER');
+INSERT INTO tb_role (authority) VALUES ('ROLE_PASSENGER');
 INSERT INTO tb_role (authority) VALUES ('ROLE_DRIVER');
 
 -- Inserir Endereços (tb_address)

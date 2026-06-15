@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,7 @@ public class BookingController {
 	@Autowired
 	private BookingService service;
 	
+	@PreAuthorize("hasAnyRole('PASSENGER', 'DRIVER')")
 	@PostMapping(value = "/{rideId}/seats")
 	public ResponseEntity<BookingDTO> reservedSeats(@PathVariable(name = "rideId") Long rideId,
 													@Positive(message = "Valor deve ser maior que zero") @RequestParam Integer seats){
@@ -37,7 +39,7 @@ public class BookingController {
 	
 	return ResponseEntity.created(uri).body(dto);
 	}
-	
+	@PreAuthorize("hasAnyRole('DRIVER')")
 	@GetMapping(value = "/{rideId}")
 	public ResponseEntity<Page<BookingDTO>> findByBookings(@NotNull(message = "Valor obrigatorio") @PathVariable(name = "rideId")  Long rideId, Pageable pageable){
 		return ResponseEntity.ok(service.findBookings(rideId, pageable));

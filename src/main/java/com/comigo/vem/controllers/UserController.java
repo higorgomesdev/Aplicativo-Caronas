@@ -4,6 +4,7 @@ import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,28 +39,32 @@ public class UserController {
 		return ResponseEntity.created(uri).body(responseUser);
 	}
 	
+	@PreAuthorize("hasAnyRole('PASSENGER', 'DRIVER')")
 	@GetMapping(value = "/me")
 	public ResponseEntity<UserResponseDTO> getMe(){
 		return ResponseEntity.ok(service.getMe());
 	}
 	
+	@PreAuthorize("hasAnyRole('PASSENGER', 'DRIVER')")
 	@GetMapping(value = "/me/min")
 	public ResponseEntity<UserResponseMinDTO> getMeMin(){
 		return ResponseEntity.ok(service.getMeMin());
 	}
 	
+	@PreAuthorize("hasAnyRole('PASSENGER', 'DRIVER')")
 	@PutMapping
 	public ResponseEntity<UserResponseDTO> updateUser(@Valid @RequestBody UserPutDTO dto){
 		return ResponseEntity.ok(service.updateUser(dto));
 	}
 	
+	@PreAuthorize("hasAnyRole('PASSENGER', 'DRIVER')")
 	@PutMapping(value = "/newPassword")
 	public ResponseEntity<Void> newPassword(@Valid @RequestBody UpdatePasswordDTO dto){
 		service.updatePassword(dto);
 		return ResponseEntity.noContent().build();
-		
+			
 	}
-	
+	@PreAuthorize("hasAnyRole('PASSENGER')")
 	@PutMapping(value = "/newDriver")
 	public ResponseEntity<UserResponseCreatedDriverDTO> createdDriver(@Valid @RequestBody DriverDataDTO dto){
 		return ResponseEntity.ok().body(service.createdDriver(dto));

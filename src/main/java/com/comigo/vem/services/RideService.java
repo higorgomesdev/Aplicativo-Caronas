@@ -77,10 +77,7 @@ public class RideService {
 	@Transactional
 	public RideDTO createdRide(RideDTO dto) {
 		User user = userService.authenticated();
-		Role role = roleRepository.searchRoleDriver();
-		if(!user.hasRole(role)) {
-			throw new UserDriverException("usuario não tem permição para esta ação");
-		}
+		
 		Ride ride = new Ride();
 		ride.setCapacity(dto.getCapacity());
 		ride.setDepartureTime(dto.getDepartureTime());
@@ -120,19 +117,10 @@ public class RideService {
 		return rides.map(p-> new RideMePassengerDTO(p));
 
 	}
-	
-	
-	
-	
 
 	private Location toLocation(LocationDTO dto) {
 		return new Location(dto.getState(), dto.getCity(), dto.getNeighborhood(),
 				dto.getStreet(), dto.getMeetingPoint());
 	}
-	
-	
-	
-	
-	
 }
 

@@ -75,7 +75,7 @@ public class UserService implements UserDetailsService{
 		User user = new User();
 		userCopy(dto, user);
 		//--------criando role padrão
-		Role role = roleRepository.searchRoleUser();
+		Role role = roleRepository.searchRolePassenger();
 		user.getRoles().add(role);
 		//----------------
 		user = repository.save(user);

@@ -12,8 +12,8 @@ public interface RoleRepository extends JpaRepository<Role, Long>{
 
 	@Query("SELECT obj "
 			+ "FROM Role obj "
-			+ "WHERE obj.authority = 'ROLE_USER'")
-	public Role searchRoleUser();
+			+ "WHERE obj.authority = 'ROLE_PASSENGER'")
+	public Role searchRolePassenger();
 	
 	@Query("SELECT obj "
 			+ "FROM Role obj "
